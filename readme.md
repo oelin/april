@@ -87,15 +87,15 @@ result:
 
 ```js
 {
-  op: '+',
-  left: 'x',
-  right: {
-    op: '*',
-    left: 'y',
+    op: '+',
+    left: 'x',
     right: {
-      op: '-',
-      right: 'z'
+        op: '*',
+        left: 'y',
+        right: {
+            op: '-',
+            right: 'z'
+        }
     }
-  }
-}
+}   
 ```
