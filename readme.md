@@ -31,7 +31,7 @@ function operation() {
 // literal -> number | variable
 
 function literal() {
-  reutrn skip(number) || variable()
+  return skip(number) || variable()
 }
 
 // unary -> operation expression
