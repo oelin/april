@@ -8,6 +8,35 @@
 In this example, we use lexi to create a parser for simple mathematical expressions.
 
 ```js
+const { use, match, peek, skip } = require('lexi')
+
+use('x + (-y * 10)')
+
+// parser code (see below)...
+
+parseExpression()
+```
+
+Result:
+
+```js
+{
+    op: '+',
+    left: 'x',
+    right: {
+        op: '*',
+        left: {
+            op: '-',
+            right: 'y'
+        },
+        right: '10'
+    }
+}
+```
+
+### Parser code 
+
+```js
 const { use, peek, skip, match } = require('lexi')
 
 // number
@@ -74,28 +103,4 @@ function expression() {
 
 Now lets use our parser
 
-```js
-function parse(text) {
-  use(text)
-  return expression()
-}
 
-parse('x + (-y * z)')
-```
-
-Result:
-
-```js
-{
-    op: '+',
-    left: 'x',
-    right: {
-        op: '*',
-        left: {
-            op: '-',
-            right: 'y'
-        },
-        right: 'z'
-    }
-}
-```
