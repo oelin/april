@@ -3,42 +3,71 @@
 "lexi" is a minimal lexical analyser that can be used to build larger parsers.
 
 
-## 3 Simple Functions
+## A simple parser
 
-
-Use `lexi.use` to feed lexi an input string (e.g. the contents of a source code file.)
-
-```js
-let input = 'y = (x + 1337) * 42'
-
-lexi.use(input) 
-```
-
-`lexi.match` parses a single token and returns the matched value. Be sure to use `^`
-at the start of the regex.
+In this example, we use lexi to create a parser for simple mathematical expressions.
 
 ```js
-let id = /^[a-zA-Z]+/
+const { use, peek, skip, match } = require('lexi')
 
-lexi.match(id) // returns 'y'
+// number
+
+function number() {
+  return match(/^\d+/)
+}
+
+// variable
+
+function variable() {
+  return match(/^[a-zA-Z]/)
+}
+
+// operation
+
+function operation() {
+  return match(/^[\+\-\*\/]/)
+}
+
+// literal -> number | variable
+
+function literal() {
+  reutrn skip(number) || variable()
+}
+
+// unary -> operation expression
+
+function unary() {
+  let op = operation()
+  let right = expression()
+  
+  return {
+    type: 'unary',
+    op,
+    right
+  }
+}
+
+// binary -> '(' expression operation expression ')'
+
+function binary() {
+  match(/^(/)
+  let left = expression()
+  let op = operation()
+  let right = expression()
+  match(/^)/)
+  
+  return {
+    type: 'binary'
+    op,
+    left,
+    right
+  }
+}
+
+
+// expression -> literal | unary | binary
+
+function expression() {
+  return literal() || unary() || binary()
+}
 ```
-
-`lexi.peek` takes a parser function and parses the next token. However, it doesn't advance the lexer's position.
-
-```js
-let parseid = () => lexi.match(id)
-
-lexi.peek(parseid) // returns null since the next token isn't an id
-
-lexi.peek(() => /^\s/) // returns ' ' since the next token is a space
-lexi.peek(() => /^\s/) // returns ' ' again, since we're still in the same place
-```
-
-`lexi.skip` takes a parser function and parses the next token. It advances the lexer's position if the token matches.
-
-```js
-lexi.match(/^\s/) // returns ' '
-
-lexi.skip(() => /^=/) // returns '=' since the next token is an equals sign, and advances
-```
-
