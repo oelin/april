@@ -5,10 +5,10 @@
 
 ## A simple parser
 
-In this example we use lexi to create a parser for simple mathematical expressions.
+Lets say we wanted to implement the following parser for simple expressions.
 
 ```js
-const parse = require('parser.js')
+const parse = require('./parse.js')
 
 parse('x + (-y * 10)')
 ```
@@ -30,27 +30,24 @@ Resulting AST:
 }
 ```
 
-
-## `parser.js`
-
-Here, `lexi.skip` and `lexi.match` are used to implement the maths parser. 
+Here's how we would do it with lexi.
 
 ```js
 const { use, peek, skip, match } = require('lexi')
 
-// number
+// numbers
 
 function number() {
   return match(/^\d+/)
 }
 
-// variable
+// variables
 
 function variable() {
   return match(/^[a-zA-Z]/)
 }
 
-// operation
+// operations
 
 function operation() {
   return match(/^[\+\-\*\/]/)
@@ -92,14 +89,14 @@ function binary() {
   }
 }
 
-
 // expression -> literal | unary | binary
 
 function expression() {
   return literal() || unary() || binary()
 }
+
+function parse(text) {
+  use(text)
+  return expression()
+}
 ```
-
-Now lets use our parser
-
-
