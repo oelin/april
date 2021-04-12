@@ -80,10 +80,10 @@ function parse(text) {
   return expression()
 }
 
-parse('x + (y * -z)')
+parse('x + (-y * z)')
 ```
 
-result:
+Result:
 
 ```js
 {
@@ -91,11 +91,11 @@ result:
     left: 'x',
     right: {
         op: '*',
-        left: 'y',
-        right: {
+        left: {
             op: '-',
-            right: 'z'
-        }
+            right: 'y'
+        },
+        right: 'z'
     }
-}   
+}
 ```
