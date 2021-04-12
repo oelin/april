@@ -41,7 +41,6 @@ function unary() {
   let right = expression()
   
   return {
-    type: 'unary',
     op,
     right
   }
@@ -51,14 +50,15 @@ function unary() {
 
 function binary() {
   match(/^(/)
+  
   let left = expression()
   let op = operation()
   let right = expression()
+  
   match(/^)/)
   
   return {
-    type: 'binary'
-    op,
+    op
     left,
     right
   }
@@ -69,5 +69,33 @@ function binary() {
 
 function expression() {
   return literal() || unary() || binary()
+}
+```
+
+Now lets use our parser
+
+```js
+function parse(text) {
+  use(text)
+  return expression()
+}
+
+parse('x + (y * -z)')
+```
+
+result:
+
+```js
+{
+  op: '+',
+  left: 'x',
+  right: {
+    op: '*',
+    left: 'y',
+    right: {
+      op: '-',
+      right: 'z'
+    }
+  }
 }
 ```
