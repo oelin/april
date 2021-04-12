@@ -5,19 +5,15 @@
 
 ## A simple parser
 
-In this example, we use lexi to create a parser for simple mathematical expressions.
+In this example we use lexi to create a parser for simple mathematical expressions.
 
 ```js
-const { use, match, peek, skip } = require('lexi')
+const parse = require('parser.js')
 
-use('x + (-y * 10)')
-
-// parser code (see below)...
-
-parseExpression()
+parse('x + (-y * 10)')
 ```
 
-Result:
+Resulting AST:
 
 ```js
 {
@@ -34,7 +30,10 @@ Result:
 }
 ```
 
-### Parser code 
+
+## `parser.js`
+
+Here, `lexi.skip` and `lexi.match` are used to implement the maths parser. 
 
 ```js
 const { use, peek, skip, match } = require('lexi')
