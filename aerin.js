@@ -47,7 +47,7 @@ function cut(m) {
 function match(token) {
 
   if (m = text.match(token)) return cut(m)
-  throw 'syntx error'
+  throw ''
 }
 
 
