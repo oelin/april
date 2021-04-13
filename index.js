@@ -1,14 +1,14 @@
 let text = ''
+let use = s => text = s
 
 
-function use(s) {
-  text = s
+let lex = token => {
+  if (m = text.match(token)) return cut(m)
+  throw ''
 }
 
 
-// parse without advancing the cursor
-
-function peek(...a) {
+let peek = (...a) => {
   let s = text
   let node = skip(...a)
   use(s)
@@ -17,9 +17,7 @@ function peek(...a) {
 }
 
 
-// parse and ignore syntax errors
-
-function skip(f, ...a) {
+let skip = (f, ...a) => {
   let s = text
 
   try {
@@ -30,25 +28,14 @@ function skip(f, ...a) {
 }
 
 
-function cut(m) {
-  // read the innermost matching group
-  
+let cut = m => {
   let value = m.filter(e => e).pop()
-
-  // advance the cursor
-
+  
   text = text.slice(value.length)
   return value
 }
 
 
-// parse a single token given its regex
-
-function match(token) {
-
-  if (m = text.match(token)) return cut(m)
-  throw ''
-}
 
 
 module.exports = {
