@@ -1,4 +1,4 @@
-let text
+let text = ''
 
 
 function use(s) {
@@ -31,9 +31,8 @@ function skip(f, ...a) {
 
 
 function cut(m) {
-  // get the matched value; if multiple groups are used, use the innermost
-  // one
-
+  // read the innermost matching group
+  
   let value = m.filter(e => e).pop()
 
   // advance the cursor
@@ -48,7 +47,7 @@ function cut(m) {
 function match(token) {
 
   if (m = text.match(token)) return cut(m)
-  throw ''
+  throw 'syntx error'
 }
 
 
