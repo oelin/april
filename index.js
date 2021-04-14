@@ -1,1 +1,1 @@
-let u,e=s=>u=s,peek=(...a)=>{let s=u,n=k(...a);return e(s),n},k=(f,...a)=>{let s=u;try{return f(...a)}catch{e(s)}},c=n=>{let v=n.filter(e=>e).pop();u=u.slice(v.length);return v},match=r=>{if(m=u.match(r))return c(m);throw''};module.exports={use:e,peek,skip:k,match}
+let u,e=s=>u=s,peek=(...a)=>{let s=u,n=k(...a);return e(s),n},k=(f,...a)=>{let s=u;try{return f(...a)}catch{e(s)}},c=n=>{let v=n.filter(e=>e).pop();u=u.slice(v.length);return v}module.exports={use:e,peek,skip:k,match:r=>{if(m=u.match(r))return c(m);throw''}}
