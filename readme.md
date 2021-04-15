@@ -22,13 +22,14 @@ Let's test it out!
 ```js
 // set the input string
 
-use('top3_foods = ["pizza", "pizza", "pizza"]')
+let input = "top3_numbers = [0, 42, 1337]"
+
+use(input)
+
 
 // parse a variable name
 
-name = variableName()
-
-console.log(name) // "top3_foods"
+variableName() // "top3_foods"
 ```
 
 
