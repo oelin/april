@@ -12,6 +12,7 @@ Here's a parser for variables names, using the regex `/^[a-zA-Z_][\w_]*/`
 ```js
 const { use, need } = require("aprils")
 
+
 function variableName() {
   return need(/^[a-zA-Z_][\w_]*/)
 }
@@ -21,8 +22,8 @@ Let's test it out!
 
 ```js
 let input = "top3_numbers = [0, 42, 1337]"
-
 use(input)
+
 variableName() // returns "top3_foods"
 ```
 
