@@ -63,14 +63,14 @@ skip(A) || skip(B) || ... || skip(Y) || Z()
 
 ## API
 
-**need(regex)**
+**need(regex)**  
 Checks if the input string matches a given regular expression. If so, it returns the matching value, otherwise it throws an error.
 
-**skip(parser, [...args])**
+**skip(parser, [...args])**  
 Executes `parser` on the input string and backtracks if `parser` fails.
 
-**peek(parser, [...args])**
+**peek(parser, [...args])**  
 Executes `parser` on the input string and *always* backtracks. This can be used to simply check the next token.
 
-**use(string)**
+**use(string)**  
 Set the input string.
