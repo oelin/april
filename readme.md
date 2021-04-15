@@ -32,6 +32,8 @@ use("42 is the answer to life")
 number() // returns "42"
 ```
 
+Note: we usually place `^` at begining of regular expressions so that we match from the **start of the input string.**
+
 ---
 
 ## Skip
