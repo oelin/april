@@ -3,12 +3,12 @@
 Aprils is tiny library for building recursive descent parsers. It's only 260 bytes!
 
 
-## Parsing for Everyone
+## Writing parsers can be fun
 
-Parsing is often something shrouded in mystery, obscure words and complicated diagrams. While this may be helpful for academics, it's not so helpful for your average Joe trying to parse web pages and learn something cool while doing so. Aprils aims to demystify parsing so you can write one yourself.
+Parsing is often something shrouded in mystery, obscure words and complicated diagrams. While this may be helpful for academics, it's not so helpful for your average Joe trying to parse web pages and learn a thing or two about compilers. Aprils aims to demystify parsing so you can write one yourself.
 
 
-## Simple parsers.
+## Simple parsers
 
 In Aprils, a parser is just a function which takes an input string and returns a new string along with some data. The simplest type of parser is one which just matches a [regular expression](https://brilliant.org/wiki/regular-expressions/).
 
