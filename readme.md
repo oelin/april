@@ -13,7 +13,7 @@ A simple parser for variable names using the regex `/^[a-zA-Z_][\w_]*/`
 const { need } = require('aprils')
 
 function variableName() {
-  return need(/^[a-z/)
+  return need(/^[a-zA-Z_][\w_]*/)
 }
 ```
 
