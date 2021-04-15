@@ -26,6 +26,15 @@ function number() {
 
 When using `need`, we usually place `^` at begining so that we match from the **start of the input string.**
 
+Let's test out our parser!
+
+```js
+use("42 is the answer to life")
+
+number() // returns "42"
+```
+
+---
 
 ## Skip
 
@@ -54,3 +63,9 @@ We can add as many options as we want using JavaScript's `||` operator; the last
 ```js
 skip(A) || skip(B) || ... || skip(Y) || Z()
 ```
+
+---
+
+## API
+
+* 
