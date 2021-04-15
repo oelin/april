@@ -3,22 +3,29 @@
 Aprils is tiny library for building recursive descent parsers. It's only 260 bytes!
 
 
-## What's a parser?
+## Parsing for Everyone
 
-In Aprils, a parser is just a function which takes an input string and returns a new string along with an [AST node](https://en.wikipedia.org/wiki/Abstract_syntax_tree). The simplest type of parser is one which just matches a regular expression.
+Parsing is often something shrouded in mystery, obscure words and complicated diagrams. While this may be helpful for academics, it's not so helpful for your average Joe trying to parse web pages and learn something cool while doing so. Aprils aims to demystify parsing so you can write one yourself.
 
-Here's a parser for variables names, using the regex `/^[a-zA-Z_][\w_]*/`  
+
+## Simple parsers.
+
+In Aprils, a parser is just a function which takes an input string and returns a new string along with some data. The simplest type of parser is one which just matches a [regular expression](https://brilliant.org/wiki/regular-expressions/).
+
+
+Here's a simple parser that matches numbers using /^\d+/.
 
 ```js
 const { use, need, skip } = require("aprils")
 
 
-function variableName() {
-  return need(/^[a-zA-Z_][\w_]*/)
+function number() {
+  return need(/^\d+/)
 }
 ```
 
-When using `need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
+When using `need`, we usually place `^` at begining so that we match from the **start of the input string.**
+
 
 
 ## Skip
