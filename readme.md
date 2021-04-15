@@ -24,8 +24,6 @@ function number() {
 }
 ```
 
-When using `need`, we usually place `^` at begining so that we match from the **start of the input string.**
-
 Let's test out our parser!
 
 ```js
