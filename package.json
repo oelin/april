@@ -1,6 +1,6 @@
 {
   "name": "aprils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A minimal parsing library",
   "main": "index.js",
   "scripts": {
