@@ -26,7 +26,9 @@ use('top3_foods = ["pizza", "pizza", "pizza"]')
 
 // parse a variable name
 
-variableName() // returns "top3_foods"
+name = variableName()
+
+console.log(name) // "top3_foods"
 ```
 
 
