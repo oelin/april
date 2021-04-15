@@ -5,7 +5,7 @@ Aprils is tiny library for building recursive descent parsers. It's only 260 byt
 
 ## Anyone can write a parser
 
-Parsing is often something shrouded in mystery, obscure words and complicated diagrams. While this may be helpful for academics, it's not so helpful for your average Joe trying to parse web pages and learn a thing or two about compilers. Aprils aims to demystify parsing so you can write one yourself.
+Parsing is often something shrouded in mystery, obscure words and complicated diagrams. While this may be helpful for academics, it's not so helpful for your average Joe trying to parse web pages and learn a thing or two about compilers. Aprils aims to demystify parser construction so you can write one yourself.
 
 
 ## Simple parsers
