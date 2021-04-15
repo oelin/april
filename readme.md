@@ -10,10 +10,10 @@ In Aprils, a parser is just a function which takes an input string and returns a
 Here's a parser for variables names, using the regex `/^[a-zA-Z_][\w_]*/`  
 
 ```js
-const { use, need } = require("aprils")
+const aprils = require("aprils")
 
 function variableName() {
-  return need(/^[a-zA-Z_][\w_]*/)
+  return aprils.need(/^[a-zA-Z_][\w_]*/)
 }
 ```
 
@@ -22,14 +22,14 @@ Let's test it out!
 ```js
 // set the input string
 
-use("top3_numbers = [0, 42, 1337]")
+aprils.use("top3_numbers = [0, 42, 1337]")
 
 // parse a variable name
 
 variableName() // returns "top3_foods"
 ```
 
-When using `need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
+When using `aprils.need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
 
 
 ## Choice
