@@ -25,7 +25,7 @@ const input = "top3_numbers = [0, 42, 1337]"
 
 use(input)
 
-variableName() // returns "top3_foods"
+variableName() // returns "top3_numbers"
 ```
 
 When using `need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
@@ -36,15 +36,15 @@ When using `need`, we usually place `^` at begining of regexes so that it matche
 Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. For example:
 
 ```js
-use("number = 1")
+use("happy = true")
 
-skip(variableName) // returns "number"
+skip(variableName) // returns "happy"
 ```
 
 ```js
-use("$number = 1")
+use("$happy = true")
 
-skip(variableName) // returns "undefined" because variableName() failed
+skip(variableName) // returns "undefined" because variableName() failed to parse
 ```
 
 
@@ -57,9 +57,11 @@ function number() {
 }
 
 
-// accept a number or a variable name
+// accept a number *or* a variable name
 
 function item() {
   return skip(number) || variableName()
 }
 ```
+
+We can add as many possibilities as we want using JavaScript's `||` operator. Note that the last one usually **shouldn't use skip.**
