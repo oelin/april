@@ -32,12 +32,16 @@ When using `need`, we usually place `^` at begining of regexes so that it matche
 
 ## Skip
 
-Aprils provides a neat little function called `skip`. Skip does its best to parse something but doesn't throw an error if it fails. For example:
+Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. For example:
 
 ```js
-use("$evil = 1")
+use("number = 1")
 
-skip(variableName) // returns "undefined" 
+skip(variableName) // returns "number"
+
+use("$number = 1")
+
+skip(variableName) // returns "undefined" because variableName() failed
 ```
 
 
