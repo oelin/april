@@ -23,10 +23,9 @@ When using `need`, we usually place `^` at begining of regexes so that it matche
 
 ## Skip
 
-Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**.
+Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. Skip can be used to allow for several possibilities.
 
-
-Accept a number **or** a variable name.
+Accept a number or a variable name.
 
 ```js
 function number() {
@@ -39,8 +38,8 @@ function item() {
 }
 ```
 
-We can add as many options as we want using JavaScript's `||` operator; the last one typically doesn't use skip.
+We can add as many possibilities as we want using JavaScript's `||` operator; the last one typically doesn't use skip.
 
-```
+```js
 skip(A) || skip(B) || ... || Z()
 ```
