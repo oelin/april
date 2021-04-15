@@ -31,8 +31,6 @@ When using `need`, we usually place `^` at begining so that we match from the **
 
 Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. Skip can be used to implement choice.
 
-Accept a number or a word.
-
 ```js
 function number() {
   return need(/^\d+/)
@@ -43,6 +41,8 @@ function word() {
   return need(/^\w+/)
 }
 
+
+// Accept a number or a word
 
 function item() {
   return skip(number) || word()
