@@ -29,16 +29,19 @@ Let's test out our parser!
 ```js
 use("42 is the answer to life")
 
+
 number() // returns "42"
 ```
 
 Note: we usually place `^` at begining of regular expressions so that we match from the **start of the input string.**
 
+
 ---
+
 
 ## Skip
 
-Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. Skip can be used to implement choice.
+Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. Skip can be used to add multiple choices.
 
 ```js
 function number() {
@@ -58,14 +61,22 @@ function item() {
 }
 ```
 
-We can add as many options as we want using JavaScript's `||` operator; the last one typically doesn't use a skip.
+We can add as many choices as we want using JavaScript's `||` operator; the last one typically doesn't use a skip.
 
 ```js
 skip(A) || skip(B) || ... || skip(Y) || Z()
 ```
 
+
 ---
+
 
 ## API
 
-* 
+* **`need(pattern)`** -- checks if the input string matches a given regular expression. If so, it returns the matching value, otherwise it throws an error.
+
+* **`skip(parser, [...args])`** -- executes `parser` on the input string and backtracks if `parser` fails.
+
+* **`peek(parser, [...args])`** -- executes `parser` on the input string and *always* backtracks. This can be used to simply check the next token.
+
+* **`use(string)`** -- set the input string.
