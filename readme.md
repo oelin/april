@@ -36,11 +36,11 @@ Aprils provides a neat little function called `skip`. Skip does its best to pars
 
 ```js
 use("number = 1")
-
 skip(variableName) // returns "number"
+```
 
+```js
 use("$number = 1")
-
 skip(variableName) // returns "undefined" because variableName() failed
 ```
 
