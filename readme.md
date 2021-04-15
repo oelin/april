@@ -29,7 +29,7 @@ use("top3_numbers = [0, 42, 1337]")
 variableName() // returns "top3_foods"
 ```
 
-When using `need`, we usually place `^` at begining of regexes so that it matches from **the start** of the input string.
+When using `need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
 
 
 ## Choice
