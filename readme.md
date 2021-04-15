@@ -36,8 +36,6 @@ number() // returns "42"
 Note: we usually place `^` at begining of regular expressions so that we match from the **start of the input string.**
 
 
----
-
 
 ## Skip
 
@@ -67,8 +65,6 @@ We can add as many choices as we want using JavaScript's `||` operator; the last
 skip(A) || skip(B) || ... || skip(Y) || Z()
 ```
 
-
----
 
 
 ## API
