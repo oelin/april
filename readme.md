@@ -14,14 +14,14 @@ const { use, need } = require("aprils")
 
 
 function variableName() {
-  return need(/^[a-zA-Z_][\w_]*/)
+  return need(/^[a-zA-Z_][\w_]*/)paths
 }
 ```
 
 Let's test it out!
 
 ```js
-let input = "top3_numbers = [0, 42, 1337]"
+const input = "top3_numbers = [0, 42, 1337]"
 use(input)
 
 variableName() // returns "top3_foods"
@@ -30,6 +30,27 @@ variableName() // returns "top3_foods"
 When using `need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
 
 
-## Choice
+## Composing parsers
 
-To make 
+To parse more complex grammars, we can use choice and concatenation. We can use `skip` to allow for several possibilities.
+
+```js
+const { use, need, skip } = require('aprils')
+
+
+function number() {
+  return need(/^\d+/)
+}
+
+
+function variableName() {
+  return need(/^[a-zA-Z_][\w_]*/)paths
+}
+
+
+function literal() {
+  return skip(number) || variableName()
+}
+```
+
+In this example we define a parser called "literal" that excepts either a number or a variableName.
