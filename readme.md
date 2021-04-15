@@ -16,12 +16,6 @@ const { use, need, skip } = require("aprils")
 function variableName() {
   return need(/^[a-zA-Z_][\w_]*/)
 }
-
-
-use("top3_numbers = [0, 42, 1337]")
-
-
-variableName() // returns "top3_numbers"
 ```
 
 When using `need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
