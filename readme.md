@@ -36,7 +36,7 @@ Note: we usually place `^` at begining of regular expressions so that we match f
 
 ## Skip
 
-Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. Skip can be used to provide multiple choices.
+Aprils provides a neat little function called `skip`. Skip does its best to parse something but doesn't throw an error if it fails. Skip can be used to provide multiple choices.
 
 ```js
 function number() {
