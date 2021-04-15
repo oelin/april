@@ -1,6 +1,6 @@
 # Aprils
 
-Aprils is tiny library for building recursive descent parsers. It's only 260 bytes!
+A tiny library for building recursive descent parsers. It's only 260 bytes!
 
 
 ## Anyone can write a parser
