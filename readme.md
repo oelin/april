@@ -13,11 +13,10 @@ Parsing is often something shrouded in mystery, obscure words and complicated di
 In Aprils, a parser is just a function which takes an input string and returns a new string along with some data. The simplest type of parser is one which just matches a [regular expression](https://brilliant.org/wiki/regular-expressions/).
 
 
-Here's a simple parser that matches numbers using **/^\d+/**.
+Here's a simple parser that matches numbers using **`/^\d+/`**.
 
 ```js
 const { use, need, skip } = require("aprils")
-
 
 function number() {
   return need(/^\d+/)
@@ -28,7 +27,6 @@ Let's test out our parser!
 
 ```js
 use("42 is the answer to life")
-
 
 number() // returns "42"
 ```
@@ -46,13 +44,11 @@ function number() {
   return need(/^\d+/)
 }
 
-
 function word() {
   return need(/^\w+/)
 }
 
-
-// Accept a number or a word
+// Accept a number *or* a word
 
 function item() {
   return skip(number) || word()
@@ -69,10 +65,10 @@ skip(A) || skip(B) || ... || skip(Y) || Z()
 
 ## API
 
-* **`need(regex)`** -- checks if the input string matches a given regular expression. If so, it returns the matching value, otherwise it throws an error.
+* `need(regex)`: checks if the input string matches a given regular expression. If so, it returns the matching value, otherwise it throws an error.
 
-* **`skip(parser, [...args])`** -- executes `parser` on the input string and backtracks if `parser` fails.
+* `skip(parser, [...args])`: executes `parser` on the input string and backtracks if `parser` fails.
 
-* **`peek(parser, [...args])`** -- executes `parser` on the input string and *always* backtracks. This can be used to simply check the next token.
+* `peek(parser, [...args])`: executes `parser` on the input string and *always* backtracks. This can be used to simply check the next token.
 
-* **`use(string)`** -- set the input string.
+* `use(string)`: set the input string.
