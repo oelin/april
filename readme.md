@@ -21,8 +21,8 @@ Let's test it out!
 
 ```js
 let input = "top3_numbers = [0, 42, 1337]"
-use(input)
 
+use(input)
 variableName() // returns "top3_foods"
 ```
 
