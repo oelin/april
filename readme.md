@@ -14,7 +14,7 @@ const { use, need } = require("aprils")
 
 
 function variableName() {
-  return need(/^[a-zA-Z_][\w_]*/)paths
+  return need(/^[a-zA-Z_][\w_]*/)
 }
 ```
 
@@ -30,9 +30,10 @@ variableName() // returns "top3_foods"
 When using `need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
 
 
-## Composing parsers
+## `skip()`
 
-To parse more complex grammars, we can use choice and concatenation. We can use `skip` to allow for several possibilities.
+Aprils provides a neat little function called `skip`. 
+
 
 ```js
 const { use, need, skip } = require('aprils')
@@ -44,13 +45,11 @@ function number() {
 
 
 function variableName() {
-  return need(/^[a-zA-Z_][\w_]*/)paths
+  return need(/^[a-zA-Z_][\w_]*/)
 }
 
 
-function literal() {
+function item() {
   return skip(number) || variableName()
 }
 ```
-
-In this example we define a parser called "literal" that excepts either a number or a variableName.
