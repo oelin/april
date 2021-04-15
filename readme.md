@@ -20,12 +20,8 @@ function variableName() {
 Let's test it out!
 
 ```js
-// set the input string
-
 let input = "top3_numbers = [0, 42, 1337]"
 use(input)
-
-// parse a variable name
 
 variableName() // returns "top3_foods"
 ```
