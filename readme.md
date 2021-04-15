@@ -10,7 +10,7 @@ In Aprils, a parser is just a function which takes an input string and returns a
 Here's a parser for variables names, using the regex `/^[a-zA-Z_][\w_]*/`  
 
 ```js
-const { use, need } = require("aprils")
+const { use, need, skip } = require("aprils")
 
 
 function variableName() {
@@ -30,22 +30,23 @@ variableName() // returns "top3_foods"
 When using `need`, we usually place `^` at begining of regexes so that it matches from the **start of the input string.**
 
 
-## `skip()`
+## Skip
 
-Aprils provides a neat little function called `skip`. 
+Aprils provides a neat little function called `skip`. Skip does its best to parse something but doesn't throw an error if it fails. For example:
+
+```js
+use("$evil = 1")
+
+skip(variableName) // returns "undefined" 
+```
+
+
+We can use `skip` to allow for several options:
 
 
 ```js
-const { use, need, skip } = require('aprils')
-
-
 function number() {
   return need(/^\d+/)
-}
-
-
-function variableName() {
-  return need(/^[a-zA-Z_][\w_]*/)
 }
 
 
