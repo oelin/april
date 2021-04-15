@@ -3,9 +3,10 @@
 Aprils is tiny library for building recursive descent parsers. It's only 260 bytes!
 
 
-## Parsers
+## A bit of background on parsing
 
-In aprils, a "parser" is a function which takes an input string and returns a new string along with an [AST node](https://en.wikipedia.org/wiki/Abstract_syntax_tree). The simplest type of parser is one which just matches a regular expression. For example:
+In Aprils, a "parser" is just a function that takes an input string and returns a new string along with an [AST node](https://en.wikipedia.org/wiki/Abstract_syntax_tree). The simplest type of parser is one which just matches a regular expression. We can use `aprils.need()` for this.
+
 
 ```js
 const { need } = require('aprils')
