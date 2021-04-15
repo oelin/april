@@ -16,14 +16,10 @@ const { use, need, skip } = require("aprils")
 function variableName() {
   return need(/^[a-zA-Z_][\w_]*/)
 }
-```
 
-Let's test it out!
 
-```js
-const input = "top3_numbers = [0, 42, 1337]"
+use("top3_numbers = [0, 42, 1337]")
 
-use(input)
 
 variableName() // returns "top3_numbers"
 ```
@@ -33,23 +29,10 @@ When using `need`, we usually place `^` at begining of regexes so that it matche
 
 ## Skip
 
-Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. For example:
-
-```js
-use("happy = true")
-
-skip(variableName) // returns "happy"
-```
-
-```js
-use("$happy = true")
-
-skip(variableName) // returns "undefined" because variableName() failed to parse
-```
+Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**.
 
 
-We can use `skip` to allow for several possibilities.
-
+Accept a number **or** a variable name.
 
 ```js
 function number() {
@@ -57,11 +40,13 @@ function number() {
 }
 
 
-// accept a number *or* a variable name
-
 function item() {
   return skip(number) || variableName()
 }
 ```
 
-We can add as many possibilities as we want using JavaScript's `||` operator. Note that the last one usually **shouldn't use skip.**
+We can add as many options as we want using JavaScript's `||` operator; the last one typically doesn't use skip.
+
+```
+skip(A) || skip(B) || ... || Z()
+```
