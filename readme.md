@@ -69,7 +69,7 @@ skip(A) || skip(B) || ... || skip(Y) || Z()
 
 ## API
 
-* **`need(pattern)`** -- checks if the input string matches a given regular expression. If so, it returns the matching value, otherwise it throws an error.
+* **`need(regex)`** -- checks if the input string matches a given regular expression. If so, it returns the matching value, otherwise it throws an error.
 
 * **`skip(parser, [...args])`** -- executes `parser` on the input string and backtracks if `parser` fails.
 
