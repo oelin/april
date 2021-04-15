@@ -13,7 +13,7 @@ Parsing is often something shrouded in mystery, obscure words and complicated di
 In Aprils, a parser is just a function which takes an input string and returns a new string along with some data. The simplest type of parser is one which just matches a [regular expression](https://brilliant.org/wiki/regular-expressions/).
 
 
-Here's a simple parser that matches numbers using /^\d+/.
+Here's a simple parser that matches numbers using **/^\d+/**.
 
 ```js
 const { use, need, skip } = require("aprils")
@@ -27,12 +27,11 @@ function number() {
 When using `need`, we usually place `^` at begining so that we match from the **start of the input string.**
 
 
-
 ## Skip
 
-Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. Skip can be used to allow for several possibilities.
+Aprils provides a neat little function called `skip`. Skip does its best to parse something but **doesn't throw an error if it fails**. Skip can be used to implement choice.
 
-Accept a number or a variable name.
+Accept a number or a word.
 
 ```js
 function number() {
@@ -40,13 +39,18 @@ function number() {
 }
 
 
+function word() {
+  return need(/^\w+/)
+}
+
+
 function item() {
-  return skip(number) || variableName()
+  return skip(number) || word()
 }
 ```
 
-We can add as many possibilities as we want using JavaScript's `||` operator; the last one typically doesn't use skip.
+We can add as many options as we want using JavaScript's `||` operator; the last one typically doesn't use a skip.
 
 ```js
-skip(A) || skip(B) || ... || Z()
+skip(A) || skip(B) || ... || skip(Y) || Z()
 ```
