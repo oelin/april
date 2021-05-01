@@ -1,76 +1,96 @@
 # Aprils
 
-A tiny library for building recursive descent parsers. It's only 260 bytes!
+Aprils is a little framework for building parsers. It's designed to be as simple as possible without limiting what you can do.
 
-
-## Anyone can write a parser
-
-Parsing is often something shrouded in mystery, obscure words and complicated diagrams. While this may be helpful for academics, it's not so helpful for your average Joe trying to parse web pages or learn a thing or two about compilers. Aprils aims to demystify parser construction so you can write one yourself.
-
-
-## Simple parsers
-
-In Aprils, a parser is just a function which takes an input string and returns a new string along with some data. The simplest type of parser is one which just matches a [regular expression](https://brilliant.org/wiki/regular-expressions/).
-
-
-Here's a simple parser that matches numbers using `/^\d+/`.
+Here's really simple parser which matches words.
 
 ```js
-const { use, need, skip } = require("aprils")
+const { match, peek, feed } = require('aprils')
 
-function number() {
-  return need(/^\d+/)
+function letters() {
+  return match(/^\w+/)
 }
-```
 
-Let's test out our parser!
-
-```js
-use("42 is the answer to life")
-
-number() // returns "42" and leaves " is the answer to life"
-```
-
-Note: we usually place `^` at begining of regular expressions so that we match from the start of the input string.
-
-
-## Skip
-
-Aprils provides a neat little function called `skip`. Skip does its best to parse something but doesn't throw an error if it fails. Skip can be used to provide multiple choices.
-
-```js
-function number() {
-  return need(/^\d+/)
+function separator() {
+  return match(/^\W*/) // stuff like spaces and periods
 }
 
 function word() {
-  return need(/^\w+/)
-}
-
-// Accept a number *or* a word
-
-function item() {
-  return skip(number) || word()
+  sparator()
+  return letters()
 }
 ```
 
-We can add as many choices as we want using JavaScript's `||` operator; the last one typically doesn't use a skip.
+Let's test it out on the string **"Luke, I am your father"**
+
 
 ```js
-skip(A) || skip(B) || ... || skip(Y) || Z()
+feed('Luke, I am your father')
+
+word() // returns 'Luke'
+word() // returns 'I'
+word() // returns 'am'
+```
+
+We can also peek ahead to check what the next token is
+
+```js
+let minus = () => match(/^-/)
+
+peek(minus) // returns `false` because the next token isn't minus sign
+peek(word) // returns `true` because the next token *is* a word
+```
+
+##  Skip
+
+Aprils exports a function called skip which can be used to add choices.
+
+
+```js
+const { match, skip, feed } = require('aprils')
+
+function upper() {
+  return match(/^[A-Z]/)
+}
+
+function lower() {
+  return match(/^[a-z]/)
+}
+```
+
+```js
+feed('aAbBcC')
+
+upper() // throws an error because the next token is lowercase
+
+skip(upper) || lower() // returns 'a' (upper didn't match but lower did)
+skip(upper) || lower() // returns 'A' (upper matched)
+```
+
+We can add any number of choices with JavaScript's `||` operator. The last choice, shouldn't use a skip.
+
+```js
+// accept A or B or ... or Y or Z
+
+skip(A) || skip(B) || ... || skip(Y) || Z()  
 ```
 
 
 ## API
 
-**need(regex)**  
-Checks if the input string matches a given regular expression. If so, it returns the matching value, otherwise it throws an error.
+### feed( string )
 
-**skip(parser, [...args])**  
-Executes `parser` on the input string and backtracks if `parser` fails.
+Sets the input string.
 
-**peek(parser, [...args])**  
-Executes `parser` on the input string and *always* backtracks. This can be used to simply check the next token.
+### match( pattern )
 
-**use(string)**  
-Set the input string.
+Checks if the input string matches a given regular expression. If so, it returns the matched value, otherwise it throws an error. Note that regular expressions should start with `^` so matching starts from the beginning of the input string.
+
+### peek( parser, [args...] )
+
+Executes a parser and returns true if it was successful. This can be used to peek ahead.
+
+### skip( parser, [args...] )
+
+Executes a parser and returns the result if it was successful. This can be used with `||` to add choices.
+
