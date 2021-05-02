@@ -1,11 +1,8 @@
 {
   "name": "aprils",
-  "version": "1.0.4",
-  "description": "A minimal parsing library",
+  "version": "1.0.6",
+  "description": "A little parsing library",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Oelin/Aprils.git"
@@ -16,7 +13,7 @@
     "parsing"
   ],
   "author": "",
-  "license": "GPL-3.0",
+  "license": "ICS",
   "bugs": {
     "url": "https://github.com/Oelin/Aprils/issues"
   },

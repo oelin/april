@@ -1,8 +1,8 @@
 # Aprils
 
-Aprils is a little framework for building parsers. It's designed to be as simple as possible without limiting what you can do.
+Aprils is a little library for quickly writing parsers from scratch 🔥.
 
-Here's really simple parser which matches words.
+Here's simple parser for words.
 
 ```js
 const { match, peek, feed } = require('aprils')
@@ -21,34 +21,20 @@ function word() {
 }
 ```
 
-Let's test it out on the string **"Luke, I am your father"**
+Let's test it out!
 
 
 ```js
 feed('Luke, I am your father')
 
 word() // returns 'Luke'
-word() // returns 'I'
+word() // returns 'I'"
 word() // returns 'am'
 ```
 
-We can also peek ahead to check what the next token is
+### Use `peek` to check the next token
 
 ```js
-let minus = () => match(/^-/)
-
-peek(minus) // returns `false` because the next token isn't minus sign
-peek(word) // returns `true` because the next token *is* a word
-```
-
-##  Skip
-
-Aprils exports a function called skip which can be used to add choices.
-
-
-```js
-const { match, skip, feed } = require('aprils')
-
 function upper() {
   return match(/^[A-Z]/)
 }
@@ -56,41 +42,56 @@ function upper() {
 function lower() {
   return match(/^[a-z]/)
 }
+
+feed("AbCdE")
+
+peek(upper) // returns `true` because the next token is uppercase
+peek(lower) // returns `false` because the next token isn't lowercase
 ```
 
+### Use `skip` to add choices
+
 ```js
-feed('aAbBcC')
+const { skip } = require('aprils')
 
-upper() // throws an error because the next token is lowercase
+// match lowercase or uppercase
 
-skip(upper) || lower() // returns 'a' (upper didn't match but lower did)
-skip(upper) || lower() // returns 'A' (upper matched)
+function letter() {
+  return skip(lower) || upper()
+}
+
+feed('AbC')
+
+letter() // returns 'A'
+letter() // returns 'b'
+letter() // returns 'C'
 ```
 
-We can add any number of choices with JavaScript's `||` operator. The last choice, shouldn't use a skip.
+You can add more choices using JavaScript's `||` operator
 
 ```js
-// accept A or B or ... or Y or Z
+// accept A or B or ... or Z
 
-skip(A) || skip(B) || ... || skip(Y) || Z()  
+skip(A) || skip(B) || ... || skip(Y) || Z()
 ```
 
 
 ## API
 
-### feed( string )
+### feed(string)
 
 Sets the input string.
 
-### match( pattern )
+### match(pattern)
 
-Checks if the input string matches a given regular expression. If so, it returns the matched value, otherwise it throws an error. Note that regular expressions should start with `^` so matching starts from the beginning of the input string.
+Consumes and returns part of the input string that matches `pattern`. Note that `pattern` should start with `^` to match from the start of the input string.
 
-### peek( parser, [args...] )
 
-Executes a parser and returns true if it was successful. This can be used to peek ahead.
+### peek(parser, [args...])
 
-### skip( parser, [args...] )
+Executes a parser and returns true if it was successful. The input string isn't consumed.
 
-Executes a parser and returns the result if it was successful. This can be used with `||` to add choices.
+### skip(parser, [args...])
+
+Executes a parser and returns the result if it was successful. The input string is only consumed on success.
 
