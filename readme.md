@@ -32,7 +32,7 @@ word() // returns 'I'"
 word() // returns 'am'
 ```
 
-### Use `peek` to check the next token
+### Use peek to check the next token
 
 ```js
 function upper() {
@@ -49,7 +49,7 @@ peek(upper) // returns `true` because the next token is uppercase
 peek(lower) // returns `false` because the next token isn't lowercase
 ```
 
-### Use `skip` to add choices
+### Use skip to add choices
 
 ```js
 const { skip } = require('aprils')
