@@ -1,4 +1,4 @@
-# Aprils
+# April 🌺
 
 Probably the smallest recursive descent parser in existence.
 
