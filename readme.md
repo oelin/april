@@ -3,7 +3,7 @@
 Probably the smallest recursive descent parser in existence.
 
 ```js
-const { match, peek, feed } = require('aprils')
+const { match, peek, feed } = require('april')
 
 function letters() {
   return match(/^\w+/)
