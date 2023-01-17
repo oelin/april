@@ -1,8 +1,6 @@
 # Aprils
 
-Aprils is a little library for quickly writing parsers from scratch 🔥.
-
-Here's simple parser for words.
+Probably the smallest recursive descent parser in existence.
 
 ```js
 const { match, peek, feed } = require('aprils')
