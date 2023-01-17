@@ -1,6 +1,6 @@
 # April 🌺
 
-Probably the smallest recursive descent parser in existence.
+Probably the smallest recursive descent parser in existence 🤏.
 
 ```js
 const { match, peek, feed } = require('april')
